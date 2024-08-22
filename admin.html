@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="styles.css" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet" type="text/css">
     <title>Password Check</title>
     <script>
         function checkPassword() {
             var passwordInput = document.getElementById('password').value;
+            var correctPassword = '1234';
 
-            fetch('/api/check-password', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ password: passwordInput })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.access === 'granted') {
-                    document.getElementById('password').style.display = 'none';
-                    document.getElementById('submitBtn').style.display = 'none';
-                    document.getElementById('message').innerHTML = '<div id=adminpage>
+            if (passwordInput === correctPassword) {
+                document.getElementById('message').innerHTML = '<div id=adminpage>
         <header>
             <div class="container">
               <img src="./assets/logo.png" alt="darkness logo" width="150px" class="logo">
@@ -44,24 +34,18 @@
         <br>
         <a style="color: white; padding-left: 20px; padding-top: 20px; font-size: 15px;" href="assets/nobodyexpectsittobehere.html">on-site proxy</a>
 </div>';
-                } else {
-                    document.getElementById('message').innerHTML = '<h1>no sirree that is the wrong password</h1>';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('message').innerHTML = '<h1>Error occurred!</h1>';
-            });
+            } else {
+                document.getElementById('message').innerHTML = '<h1 class="thing">dat is da wrong password</h1>';
+            }
         }
     </script>
 </head>
 <body>
-    <div id="input-container">
-        <input type="text" id="password" placeholder="Enter password">
-        <button id="submitBtn" onclick="checkPassword()">Submit</button>
+    <div>
+        <input type="text" class="thing" id="password" placeholder="Enter password">
+        <button class="thing" onclick="checkPassword()">Submit</button>
     </div>
     <div id="message"></div>
 </body>
 </html>
-        
         
