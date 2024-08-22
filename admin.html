@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Check</title>
+    <script>
+        function checkPassword() {
+            var passwordInput = document.getElementById('password').value;
+            var correctPassword = '1234';
+            
+            if (passwordInput === correctPassword) {
+                document.getElementById('message').innerHTML = '<h1>Access Granted!</h1>';
+            } else {
+                document.getElementById('message').innerHTML = '<h1>Access Denied!</h1>';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+    <div id="message"></div>
+</body>
+</html>
