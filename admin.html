@@ -10,6 +10,11 @@
             var correctPassword = '1234';
             
             if (passwordInput === correctPassword) {
+                // Hide the input and button
+                document.getElementById('password').style.display = 'none';
+                document.getElementById('submitBtn').style.display = 'none';
+                
+                // Display the h1 message
                 document.getElementById('message').innerHTML = '<h1>Access Granted!</h1>';
             } else {
                 document.getElementById('message').innerHTML = '<h1>Access Denied!</h1>';
@@ -18,9 +23,9 @@
     </script>
 </head>
 <body>
-    <div>
+    <div id="input-container">
         <input type="text" id="password" placeholder="Enter password">
-        <button onclick="checkPassword()">Submit</button>
+        <button id="submitBtn" onclick="checkPassword()">Submit</button>
     </div>
     <div id="message"></div>
 </body>
