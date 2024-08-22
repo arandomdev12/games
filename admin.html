@@ -3,49 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles.css" rel="stylesheet" type="text/css">
     <title>Password Check</title>
+    <style>
+        #adminpage {
+            display: none;
+            background-color: #000; /* Adding a background color for visibility */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
     <script>
         function checkPassword() {
             var passwordInput = document.getElementById('password').value;
             var correctPassword = '1234';
 
             if (passwordInput === correctPassword) {
-                document.getElementById('message').innerHTML = '<div id=adminpage>
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('adminpage').style.display = 'block';
+            } else {
+                document.getElementById('message').innerHTML = '<h1>Access Denied!</h1>';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="login">
+        <input type="text" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+    <div id="message"></div>
+    <div id="adminpage">
         <header>
             <div class="container">
-              <img src="./assets/logo.png" alt="darkness logo" width="150px" class="logo">
-        
-              <nav>
-                <ul>
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="exploits.html">Exploits</a></li>
-                  <li><a href="games.html">Games</a></li>
-                  <li><a href="proxies.html">Proxies</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                </ul>
-              </nav>
+                <img src="./assets/logo.png" alt="darkness logo" width="150px" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="exploits.html">Exploits</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="proxies.html">Proxies</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
-          </header>
+        </header>
         <h1 style="text-align: center; color: white; padding-top: 100px; font-size: 80px;">admin page</h1>
         <h1 style="text-align: center; color: white; padding-top: 30px; font-size: 40px;">all the best and extra proxy links</h1>
         <h1 style="color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">if you managed to get into this page and you AREN'T the owner, h o w</h1>
         <h1 style="color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">remember to be careful around these links, don't click them if they have random characters before them</h1>
         <br>
         <a style="color: white; padding-left: 20px; padding-top: 20px; font-size: 15px;" href="assets/nobodyexpectsittobehere.html">on-site proxy</a>
-</div>';
-            } else {
-                document.getElementById('message').innerHTML = '<h1 class="thing">dat is da wrong password</h1>';
-            }
-        }
-    </script>
-</head>
-<body>
-    <div>
-        <input type="text" class="thing" id="password" placeholder="Enter password">
-        <button class="thing" onclick="checkPassword()">Submit</button>
     </div>
-    <div id="message"></div>
 </body>
 </html>
         
