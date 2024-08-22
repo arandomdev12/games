@@ -2,10 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="styles.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>amdin page</title>
+    <title>Password Check</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Favicon link -->
+    <style>
+        /* Initially hide the login form */
+        #login {
+            display: none;
+        }
+        /* Styling for the admin page */
+        #adminpage {
+            display: none;
+            background-color: #000; /* Adding a background color for visibility */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the login form when the page loads
+            document.getElementById('login').style.display = 'block';
+        });
+
         function checkPassword() {
             var passwordInput = document.getElementById('password').value;
             var correctPassword = '1234';
@@ -42,10 +62,10 @@
         </header>
         <h1 style="text-align: center; color: white; padding-top: 100px; font-size: 80px;">admin page</h1>
         <h1 style="text-align: center; color: white; padding-top: 30px; font-size: 40px;">all the best and extra proxy links</h1>
-        <h1 style="text-align: left; color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">if you managed to get into this page and you AREN'T the owner, good job, it's not that hard</h1>
-        <h1 style="text-align: left; color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">remember to be careful around these links, don't click them if they have random characters before them</h1>
+        <h1 style="color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">if you managed to get into this page and you AREN'T the owner, h o w</h1>
+        <h1 style="color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">remember to be careful around these links, don't click them if they have random characters before them</h1>
         <br>
-        <a style="color: white; padding-left: 20px; padding-top: 20px; font-size: 15px;" href="assets/nobodyexpectsittobehere.html">about:blank cloaker</a>
+        <a style="color: white; padding-left: 20px; padding-top: 20px; font-size: 15px;" href="assets/nobodyexpectsittobehere.html">on-site proxy</a>
     </div>
 </body>
 </html>
