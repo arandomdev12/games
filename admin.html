@@ -7,11 +7,14 @@
     <link href="styles.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Favicon link -->
     <style>
+        /* Initially hide the login form */
         #login {
             display: none;
+        }
+        /* Styling for the admin page */
         #adminpage {
             display: none;
-            background-color: #000;
+            background-color: #000; /* Adding a background color for visibility */
             color: white;
             text-align: center;
             padding: 20px;
@@ -19,13 +22,12 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Show the login form when the page loads
             document.getElementById('login').style.display = 'block';
         });
-
         function checkPassword() {
             var passwordInput = document.getElementById('password').value;
             var correctPassword = 'macaroninoodles';
-
             if (passwordInput === correctPassword) {
                 document.getElementById('login').style.display = 'none';
                 document.getElementById('adminpage').style.display = 'block';
@@ -61,9 +63,7 @@
         <h1 style="color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">if you managed to get into this page and you AREN'T the owner, gj you know what ctrl + u is</h1>
         <h1 style="color: white; padding-left: 20px; padding-top: 100px; font-size: 20px;">remember to be careful around these links, don't click them if they have random characters before them</h1>
         <br>
-        <a style="color: white; padding-left: 20px; padding-top: 20px; font-size: 15px;" href="assets/nobodyexpectsittobehere.html">about:blank cloaker</a>
         <br>
     </div>
 </body>
 </html>
-        
