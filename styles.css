@@ -20,7 +20,7 @@ body {
 }
 
 header {
-  background-image: linear-gradient(to right, #898989, #767676, #333333, #333333, #333333, #333333);
+  background-image: linear-gradient(to right, #898989, #878787, #767676, #333333, #333333, ##3c3c3c, #444444);
 }
 
 header::after {
