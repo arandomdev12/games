@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 body {
-	margin: 0;
-	background: black;
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;
+  margin: 0;
+  background: black;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
 }
 
 .center-box {
-	border: 2px solid;
-	text-align: center;
+  border: 2px solid;
+  text-align: center;
 }
 
 .container {
-	width: 80%;
-	margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
 header {
