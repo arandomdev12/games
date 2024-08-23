@@ -5,6 +5,18 @@ body {
   font-family: 'Work Sans', sans-serif;
   font-weight: 800;
 }
+.big-box {
+  border: 3px solid;
+  text-align: center;
+  margin: auto;
+  width: 75%;
+  border-radius: 20px
+}
+.small-box {
+  border: 1.5px solid;
+  text-align: center;
+  margin: auto;
+}
 
 .center-box {
   border: 3px solid;
