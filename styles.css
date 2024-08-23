@@ -7,6 +7,7 @@ body {
 }
 .big-box {
   border: 3px solid;
+  border-color: white;
   text-align: center;
   margin: auto;
   width: 75%;
@@ -14,6 +15,7 @@ body {
 }
 .small-box {
   border: 1.5px solid;
+  border-color: white;
   text-align: center;
   margin: auto;
 }
