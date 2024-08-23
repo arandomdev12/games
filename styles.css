@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 body {
   margin: 0;
-  background-image: linear-gradient(black, #555555, #3c3c3c, #222222, black);
+  background-image: linear-gradient(black, #444444, #555555, #222222, black);
   font-family: 'Work Sans', sans-serif;
   font-weight: 800;
 }
