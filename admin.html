@@ -7,14 +7,12 @@
     <link href="styles.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Favicon link -->
     <style>
-        /* Initially hide the login form */
         #login {
             display: none;
         }
-        /* Styling for the admin page */
         #adminpage {
             display: none;
-            background-color: #000; /* Adding a background color for visibility */
+            background-color: #000;
             color: white;
             text-align: center;
             padding: 20px;
@@ -22,13 +20,13 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Show the login form when the page loads
             document.getElementById('login').style.display = 'block';
         });
         function checkPassword() {
-            var passwordInput = document.getElementById('password').value;
-            var correctPassword = 'macaroninoodles';
-            if (passwordInput === correctPassword) {
+            var urmum = document.getElementById('password').value;
+            var snacktime = 'bWFjYXJvbmlubm9vZGxlcw=='
+            var urmom = atob(snacktime);
+            if (urmum === urmom) {
                 document.getElementById('login').style.display = 'none';
                 document.getElementById('adminpage').style.display = 'block';
             } else {
