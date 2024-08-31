@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boot Screen</title>
+  <style>
+    /* Add some basic styling to make the page look better */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #progress-bar {
+      width: 50%;
+      height: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 20px auto;
+    }
+    #progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background-color: #4CAF50;
+      border-radius: 5px;
+      transition: width 0.1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Loading WebOS...</h1>
+    <p>Please wait while we load the desktop environment...</p>
+  </header>
+  <main>
+    <!-- Your custom content here, e.g. logo, loading animation, etc. -->
+    <img src="WebOSBetaLIVEWallPaper.gif" alt="WebOS Logo" width="100" height="100">
+    <div id="progress-bar">
+      <div id="progress-bar-fill"></div>
+    </div>
+    <p id="progress-text">0%</p>
+  </main>
+  <script>
+    // Set the boot time to 30 seconds
+    const bootTime = 30000;
+    // Set the progress bar increment interval to 10ms
+    const incrementInterval = 10;
+    // Calculate the number of increments needed to reach 100%
+    const numIncrements = bootTime / incrementInterval;
+    // Initialize the progress bar width to 0%
+    let progressBarWidth = 0;
+    // Create an interval to increment the progress bar
+    const intervalId = setInterval(() => {
+      // Increment the progress bar width
+      progressBarWidth += 100 / numIncrements;
+      // Update the progress bar fill width
+      document.getElementById('progress-bar-fill').style.width = `${progressBarWidth}%`;
+      // Update the progress text
+      document.getElementById('progress-text').textContent = `${Math.round(progressBarWidth)}%`;
+      // If the progress bar has reached 100%, clear the interval and redirect to index.html
+      if (progressBarWidth >= 100) {
+        clearInterval(intervalId);
+        window.location.href = "index.html";
+      }
+    }, incrementInterval);
+  </script>
+</body>
+</html>

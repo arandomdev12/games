@@ -1,0 +1,313 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-image: url('path/to/your/chromeos-background.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+/* Boot Screen Styles */
+#boot-screen-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4285f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  z-index: 9999;
+}
+
+#boot-screen {
+  text-align: center;
+}
+
+#progress-bar {
+  width: 300px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+#progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: width 0.1s ease-in-out;
+}
+
+/* Login Screen Styles */
+#login-screen-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+#login-screen {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.login-form {
+  width: 300px;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #202124;
+  font-weight: 500;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.login-form button {
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #1765cc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Desktop Styles */
+#desktop {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Shelf (Taskbar) Styles */
+#shelf {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+#app-launcher {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #f1f3f4;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+#app-launcher:hover {
+  background-color: #e8eaed;
+}
+
+#app-launcher i {
+  color: #5f6368;
+  font-size: 20px;
+}
+
+#pinned-apps, #running-apps {
+  display: flex;
+  align-items: center;
+}
+
+#system-tray {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+#system-tray > * {
+  margin-left: 16px;
+  color: #5f6368;
+}
+
+#clock {
+  font-size: 14px;
+}
+
+/* App Grid Styles */
+#app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-gap: 16px;
+  padding: 24px;
+  height: calc(100vh - 48px);
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.app-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.app-icon:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.05);
+}
+
+.app-icon i {
+  font-size: 48px;
+  margin-bottom: 8px;
+  color: #5f6368;
+}
+
+.app-icon span {
+  font-size: 14px;
+  color: #3c4043;
+}
+
+/* App Window Styles */
+#app-windows-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 48px);
+  z-index: 1000;
+}
+
+.app-window {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 200px;
+  transition: all 0.3s ease;
+}
+
+.app-window-header {
+  background-color: #f1f3f4;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.app-window-title {
+  font-weight: 500;
+  color: #3c4043;
+}
+
+.app-window-controls button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #5f6368;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+}
+
+.app-window-controls button:hover {
+  color: #202124;
+}
+
+.app-window-content {
+  flex-grow: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+.minimized {
+  display: none;
+}
+
+.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(100% - 48px) !important;
+  border-radius: 0;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
