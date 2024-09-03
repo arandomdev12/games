@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-critters-container>
+    <head>
+        <meta charset="utf-8">
+        <base href="#" target="_blank">
+        <link rel="manifest" href="mall/manifest.webmanifest" crossorigin="use-credentials">
+        <title>GeForce NOW</title>
+        <meta name="description" content="Instantly play the most demanding PC games and seamlessly play across your devices.">
+        <meta property="og:site_name" content="GeForce NOW">
+        <meta property="og:type" content="Website">
+        <meta property="og:image" content="https://www.nvidia.com/content/dam/en-zz/Solutions/gfn/webassets/geforce-now-og-no-text-1200x630.jpg">
+        <meta property="og:title" content="Experience GeForce NOW Gaming Anywhere &amp; Anytime">
+        <meta property="og:description" content="Instantly play the most demanding PC games and seamlessly play across your devices.">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <script type="text/javascript">
+            if (!window.indexedDB) {
+                console.error('IndexedDB is not available in your browser');
+            }
+            if (window.location.hostname.startsWith('beta.') && !window.navigator.standalone) {
+                const newOrigin = window.location.origin.replace('beta.', '');
+                window.location.replace(newOrigin);
+            }
+            if (window.location.hostname.startsWith('gdn')) {
+                window.isGDNDomain = true;
+                document.title = 'Graphics Delivery Network';
+            }
+            
+            window.geForceNowStartLocationHref = window.location.href;
+            window.geForceNowStartLocationOrigin = window.location.origin;
+            window.geForceNowStartLocationPathName = window.location.pathname;
+            window.geForceNowStartLocationHash = window.location.hash;
+
+            
+            if (window.navigator.standalone && window.location.hash.length > 0) {
+                window.location.hash = '';
+            }
+
+            
+            performance.mark('CommonJSInitStart');
+            
+            window.jsInitStartTs = Date.now();
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    console.log('Registering SW');
+                    let params;
+                    if (!('cefQuery' in window)) {
+                        params = { scope: '../' };
+                    }
+
+                    window.SWRegistrationInfo = window.SWRegistrationInfo || {};
+
+                    navigator.serviceWorker
+                        .register('gfn-service-worker.js', params)
+                        .then(reg => {
+                            window.SWRegistrationInfo.isSuccess = true;
+                            if (reg) {
+                                console.log('SW Registration succeeded. Scope is:', reg.scope);
+                            } else {
+                                console.log('SW Registration succeeded, but no return');
+                            }
+                        })
+                        .catch(e => {
+                            window.SWRegistrationInfo.isSuccess = false;
+                            window.SWRegistrationInfo.error = e;
+                            console.error('SW Registration failed with error', e);
+                        });
+                });
+            }
+            
+
+            let isRemoveManifest = true;
+            if (navigator.userAgentData && navigator.userAgentData.platform && navigator.userAgentData.brands) {
+                const plt = navigator.userAgentData.platform;
+                for (const brand of navigator.userAgentData.brands) {
+                    if (
+                        (brand.brand === 'Google Chrome' || brand.brand === 'Chromium') &&
+                        (plt === 'Chrome OS' || plt === 'ChromeOS' || plt === 'Linux')
+                    ) {
+                        isRemoveManifest = false;
+                    }
+                }
+            } else if (new RegExp('^(?!.*Edge).*CrOS.*Chrome|(?!.*Android).*Linux.*Chrome').test(navigator.userAgent)) {
+                isRemoveManifest = false;
+            }
+            if (isRemoveManifest) {
+                document.querySelector('link[rel="manifest"]').remove();
+            }
+
+            if ('tizen' in window) {
+                
+                const scriptTag = document.createElement('script');
+                scriptTag.src = '$WEBAPIS/webapis/webapis.js';
+                scriptTag.async = true;
+                document.head.appendChild(scriptTag);
+            }
+
+            const meta = document.createElement('meta');
+            meta.setAttribute('name', 'apple-mobile-web-app-status-bar-style');
+            const isIPad = /iPad|Macintosh/.test(navigator.userAgent) && navigator?.maxTouchPoints > 0;
+            
+            meta.setAttribute('content', isIPad ? 'black-translucent' : 'black');
+            document.head.appendChild(meta);
+        </script>
+
+        <link rel="preconnect" href="https://pcs.geforcenow.com" crossorigin="anonymous">
+        <link rel="preconnect" href="https://public.games.geforce.com" crossorigin="anonymous">
+        <link rel="preconnect" href="https://gx-target-experiments-frontend-api.gx.nvidia.com" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimum-scale=1, maximum-scale=1">
+        <link rel="icon" id="appIcon" type="image/png" href="mall/assets/img/GFN_logo1024_v2.png">
+        
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="apple-mobile-web-app-title" content="GeForce NOW">
+        
+        <link rel="apple-touch-icon" href="mall/assets/icons/GFN-Logo-120.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="mall/assets/icons/GFN-Logo-152.png">
+        <link rel="apple-touch-icon" sizes="167x167" href="mall/assets/icons/GFN-Logo-167.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="mall/assets/icons/GFN-Logo-180.png">
+        
+        
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad129Pro_landscape_v3.png">
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad129Pro_portrait_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad110Pro_landscape_v3.png">
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad110Pro_portrait_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad105Air_landscape_v3.png">
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad105Air_portrait_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad109Air_landscape_v4.png">
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad109Air_portrait_v4.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad102_landscape_v3.png">
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad102_portrait_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad097Pro_landscape_v3.png">
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://play.geforcenow.com/mall/assets/img/splash_iPad097Pro_portrait_v3.png">
+        
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)" href="mall/assets/img/splash_iPhone12ProMax_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="mall/assets/img/splash_iPhone12Pro_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="mall/assets/img/splash_iPhone12Mini_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="mall/assets/img/splash_iPhone11ProMax_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" href="mall/assets/img/splash_iPhone11_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="mall/assets/img/splash_iPhone8Plus_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="mall/assets/img/splash_iPhone8_v3.png">
+        
+        <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="mall/assets/img/splash_iPhoneSEOld_v3.png">
+        <link rel="canonical" href="index.html">
+    <style>html{--mat-badge-text-font:NVIDIA, sans-serif;--mat-badge-text-size:12px;--mat-badge-text-weight:600;--mat-badge-small-size-text-size:9px;--mat-badge-large-size-text-size:24px}html{--mat-bottom-sheet-container-text-font:NVIDIA, sans-serif;--mat-bottom-sheet-container-text-line-height:20px;--mat-bottom-sheet-container-text-size:14px;--mat-bottom-sheet-container-text-tracking:.0178571429em;--mat-bottom-sheet-container-text-weight:400}html{--mat-legacy-button-toggle-text-font:NVIDIA, sans-serif;--mat-standard-button-toggle-text-font:NVIDIA, sans-serif}html{--mat-datepicker-calendar-text-font:NVIDIA, sans-serif;--mat-datepicker-calendar-text-size:13px;--mat-datepicker-calendar-body-label-text-size:14px;--mat-datepicker-calendar-body-label-text-weight:500;--mat-datepicker-calendar-period-button-text-size:14px;--mat-datepicker-calendar-period-button-text-weight:500;--mat-datepicker-calendar-header-text-size:11px;--mat-datepicker-calendar-header-text-weight:400}html{--mat-expansion-header-text-font:NVIDIA, sans-serif;--mat-expansion-header-text-size:14px;--mat-expansion-header-text-weight:500;--mat-expansion-header-text-line-height:inherit;--mat-expansion-header-text-tracking:inherit;--mat-expansion-container-text-font:NVIDIA, sans-serif;--mat-expansion-container-text-line-height:20px;--mat-expansion-container-text-size:14px;--mat-expansion-container-text-tracking:.0178571429em;--mat-expansion-container-text-weight:400}html{--mat-grid-list-tile-header-primary-text-size:14px;--mat-grid-list-tile-header-secondary-text-size:12px;--mat-grid-list-tile-footer-primary-text-size:14px;--mat-grid-list-tile-footer-secondary-text-size:12px}html{--mat-stepper-container-text-font:NVIDIA, sans-serif;--mat-stepper-header-label-text-font:NVIDIA, sans-serif;--mat-stepper-header-label-text-size:14px;--mat-stepper-header-label-text-weight:400;--mat-stepper-header-error-state-label-text-size:16px;--mat-stepper-header-selected-state-label-text-size:16px;--mat-stepper-header-selected-state-label-text-weight:400}html{--mat-toolbar-title-text-font:NVIDIA, sans-serif;--mat-toolbar-title-text-line-height:32px;--mat-toolbar-title-text-size:20px;--mat-toolbar-title-text-tracking:.0125em;--mat-toolbar-title-text-weight:500}html{--mat-option-label-text-font:NVIDIA, sans-serif;--mat-option-label-text-line-height:24px;--mat-option-label-text-size:16px;--mat-option-label-text-tracking:.03125em;--mat-option-label-text-weight:400}html{--mat-optgroup-label-text-font:NVIDIA, sans-serif;--mat-optgroup-label-text-line-height:24px;--mat-optgroup-label-text-size:16px;--mat-optgroup-label-text-tracking:.03125em;--mat-optgroup-label-text-weight:400}html{--mdc-filled-text-field-label-text-font:NVIDIA, sans-serif;--mdc-filled-text-field-label-text-size:16px;--mdc-filled-text-field-label-text-tracking:.03125em;--mdc-filled-text-field-label-text-weight:400;--mdc-outlined-text-field-label-text-font:NVIDIA, sans-serif;--mdc-outlined-text-field-label-text-size:16px;--mdc-outlined-text-field-label-text-tracking:.03125em;--mdc-outlined-text-field-label-text-weight:400;--mat-form-field-container-text-font:NVIDIA, sans-serif;--mat-form-field-container-text-line-height:24px;--mat-form-field-container-text-size:16px;--mat-form-field-container-text-tracking:.03125em;--mat-form-field-container-text-weight:400;--mat-form-field-outlined-label-text-populated-size:16px;--mat-form-field-subscript-text-font:NVIDIA, sans-serif;--mat-form-field-subscript-text-line-height:20px;--mat-form-field-subscript-text-size:12px;--mat-form-field-subscript-text-tracking:.0333333333em;--mat-form-field-subscript-text-weight:400}html{--mat-select-trigger-text-font:NVIDIA, sans-serif;--mat-select-trigger-text-line-height:24px;--mat-select-trigger-text-size:16px;--mat-select-trigger-text-tracking:.03125em;--mat-select-trigger-text-weight:400}html{--mat-menu-item-label-text-font:NVIDIA, sans-serif;--mat-menu-item-label-text-size:16px;--mat-menu-item-label-text-tracking:.03125em;--mat-menu-item-label-text-line-height:24px;--mat-menu-item-label-text-weight:400}html{--mat-paginator-container-text-font:NVIDIA, sans-serif;--mat-paginator-container-text-line-height:20px;--mat-paginator-container-text-size:12px;--mat-paginator-container-text-tracking:.0333333333em;--mat-paginator-container-text-weight:400;--mat-paginator-select-trigger-text-size:12px}html{--mat-table-header-headline-font:NVIDIA, sans-serif;--mat-table-header-headline-line-height:22px;--mat-table-header-headline-size:14px;--mat-table-header-headline-weight:500;--mat-table-header-headline-tracking:.0071428571em;--mat-table-row-item-label-text-font:NVIDIA, sans-serif;--mat-table-row-item-label-text-line-height:20px;--mat-table-row-item-label-text-size:14px;--mat-table-row-item-label-text-weight:400;--mat-table-row-item-label-text-tracking:.0178571429em;--mat-table-footer-supporting-text-font:NVIDIA, sans-serif;--mat-table-footer-supporting-text-line-height:20px;--mat-table-footer-supporting-text-size:14px;--mat-table-footer-supporting-text-weight:400;--mat-table-footer-supporting-text-tracking:.0178571429em}html{--mat-option-selected-state-label-text-color:#292929;--mat-option-label-text-color:white;--mat-option-hover-state-layer-color:rgba(255, 255, 255, .08);--mat-option-focus-state-layer-color:rgba(255, 255, 255, .08);--mat-option-selected-state-layer-color:rgba(255, 255, 255, .08)}html{--mat-optgroup-label-text-color:white}html{--mdc-filled-text-field-caret-color:#292929;--mdc-filled-text-field-focus-active-indicator-color:#292929;--mdc-filled-text-field-focus-label-text-color:rgba(41, 41, 41, .87);--mdc-filled-text-field-container-color:#414141;--mdc-filled-text-field-disabled-container-color:#3d3d3d;--mdc-filled-text-field-label-text-color:rgba(255, 255, 255, .6);--mdc-filled-text-field-disabled-label-text-color:rgba(255, 255, 255, .38);--mdc-filled-text-field-input-text-color:rgba(255, 255, 255, .87);--mdc-filled-text-field-disabled-input-text-color:rgba(255, 255, 255, .38);--mdc-filled-text-field-input-text-placeholder-color:rgba(255, 255, 255, .6);--mdc-filled-text-field-error-focus-label-text-color:#ffb43e;--mdc-filled-text-field-error-label-text-color:#ffb43e;--mdc-filled-text-field-error-caret-color:#ffb43e;--mdc-filled-text-field-active-indicator-color:rgba(255, 255, 255, .42);--mdc-filled-text-field-disabled-active-indicator-color:rgba(255, 255, 255, .06);--mdc-filled-text-field-hover-active-indicator-color:rgba(255, 255, 255, .87);--mdc-filled-text-field-error-active-indicator-color:#ffb43e;--mdc-filled-text-field-error-focus-active-indicator-color:#ffb43e;--mdc-filled-text-field-error-hover-active-indicator-color:#ffb43e;--mdc-outlined-text-field-caret-color:#292929;--mdc-outlined-text-field-focus-outline-color:#292929;--mdc-outlined-text-field-focus-label-text-color:rgba(41, 41, 41, .87);--mdc-outlined-text-field-label-text-color:rgba(255, 255, 255, .6);--mdc-outlined-text-field-disabled-label-text-color:rgba(255, 255, 255, .38);--mdc-outlined-text-field-input-text-color:rgba(255, 255, 255, .87);--mdc-outlined-text-field-disabled-input-text-color:rgba(255, 255, 255, .38);--mdc-outlined-text-field-input-text-placeholder-color:rgba(255, 255, 255, .6);--mdc-outlined-text-field-error-caret-color:#ffb43e;--mdc-outlined-text-field-error-focus-label-text-color:#ffb43e;--mdc-outlined-text-field-error-label-text-color:#ffb43e;--mdc-outlined-text-field-outline-color:rgba(255, 255, 255, .38);--mdc-outlined-text-field-disabled-outline-color:rgba(255, 255, 255, .06);--mdc-outlined-text-field-hover-outline-color:rgba(255, 255, 255, .87);--mdc-outlined-text-field-error-focus-outline-color:#ffb43e;--mdc-outlined-text-field-error-hover-outline-color:#ffb43e;--mdc-outlined-text-field-error-outline-color:#ffb43e;--mat-form-field-disabled-input-text-placeholder-color:rgba(255, 255, 255, .38)}html{--mat-select-panel-background-color:#393939;--mat-select-enabled-trigger-text-color:rgba(255, 255, 255, .87);--mat-select-disabled-trigger-text-color:rgba(255, 255, 255, .38);--mat-select-placeholder-text-color:rgba(255, 255, 255, .6);--mat-select-enabled-arrow-color:rgba(255, 255, 255, .54);--mat-select-disabled-arrow-color:rgba(255, 255, 255, .38);--mat-select-focused-arrow-color:rgba(41, 41, 41, .87);--mat-select-invalid-arrow-color:rgba(255, 180, 62, .87)}html{--mat-autocomplete-background-color:#393939}html{--mat-menu-item-label-text-color:white;--mat-menu-item-icon-color:white;--mat-menu-item-hover-state-layer-color:rgba(255, 255, 255, .08);--mat-menu-item-focus-state-layer-color:rgba(255, 255, 255, .08);--mat-menu-container-color:#393939}html{--mat-paginator-container-text-color:rgba(255, 255, 255, .87);--mat-paginator-container-background-color:#393939;--mat-paginator-enabled-icon-color:rgba(255, 255, 255, .54);--mat-paginator-disabled-icon-color:rgba(255, 255, 255, .12)}html{--mat-paginator-container-size:56px}html{--mdc-checkbox-disabled-selected-icon-color:rgba(255, 255, 255, .38);--mdc-checkbox-disabled-unselected-icon-color:rgba(255, 255, 255, .38);--mdc-checkbox-selected-checkmark-color:#000;--mdc-checkbox-selected-focus-icon-color:#76b900;--mdc-checkbox-selected-hover-icon-color:#76b900;--mdc-checkbox-selected-icon-color:#76b900;--mdc-checkbox-selected-pressed-icon-color:#76b900;--mdc-checkbox-unselected-focus-icon-color:#eeeeee;--mdc-checkbox-unselected-hover-icon-color:#eeeeee;--mdc-checkbox-unselected-icon-color:rgba(255, 255, 255, .54);--mdc-checkbox-unselected-pressed-icon-color:rgba(255, 255, 255, .54);--mdc-checkbox-selected-focus-state-layer-color:#76b900;--mdc-checkbox-selected-hover-state-layer-color:#76b900;--mdc-checkbox-selected-pressed-state-layer-color:#76b900;--mdc-checkbox-unselected-focus-state-layer-color:white;--mdc-checkbox-unselected-hover-state-layer-color:white;--mdc-checkbox-unselected-pressed-state-layer-color:white}html{--mdc-checkbox-state-layer-size:40px}html{--mat-table-background-color:#393939;--mat-table-header-headline-color:white;--mat-table-row-item-label-text-color:white;--mat-table-row-item-outline-color:rgba(255, 255, 255, .3)}html{--mat-table-header-container-height:56px;--mat-table-footer-container-height:52px;--mat-table-row-item-container-height:52px}html{--mat-badge-background-color:#292929;--mat-badge-text-color:white;--mat-badge-disabled-state-background-color:#6e6e6e;--mat-badge-disabled-state-text-color:rgba(255, 255, 255, .5)}html{--mat-bottom-sheet-container-text-color:white;--mat-bottom-sheet-container-background-color:#424242}html{--mat-legacy-button-toggle-text-color:rgba(255, 255, 255, .5);--mat-legacy-button-toggle-state-layer-color:rgba(255, 255, 255, .12);--mat-legacy-button-toggle-selected-state-text-color:rgba(255, 255, 255, .7);--mat-legacy-button-toggle-selected-state-background-color:#212121;--mat-legacy-button-toggle-disabled-state-text-color:rgba(255, 255, 255, .3);--mat-legacy-button-toggle-disabled-state-background-color:black;--mat-legacy-button-toggle-disabled-selected-state-background-color:#424242;--mat-standard-button-toggle-text-color:white;--mat-standard-button-toggle-background-color:#393939;--mat-standard-button-toggle-state-layer-color:white;--mat-standard-button-toggle-selected-state-background-color:#212121;--mat-standard-button-toggle-selected-state-text-color:white;--mat-standard-button-toggle-disabled-state-text-color:rgba(255, 255, 255, .3);--mat-standard-button-toggle-disabled-state-background-color:#393939;--mat-standard-button-toggle-disabled-selected-state-text-color:white;--mat-standard-button-toggle-disabled-selected-state-background-color:#424242;--mat-standard-button-toggle-divider-color:#747474}html{--mat-standard-button-toggle-height:48px}html{--mat-datepicker-calendar-date-selected-state-text-color:white;--mat-datepicker-calendar-date-selected-state-background-color:#292929;--mat-datepicker-calendar-date-selected-disabled-state-background-color:rgba(41, 41, 41, .4);--mat-datepicker-calendar-date-today-selected-state-outline-color:white;--mat-datepicker-calendar-date-focus-state-background-color:rgba(41, 41, 41, .3);--mat-datepicker-calendar-date-hover-state-background-color:rgba(41, 41, 41, .3);--mat-datepicker-toggle-active-state-icon-color:#292929;--mat-datepicker-calendar-date-in-range-state-background-color:rgba(41, 41, 41, .2);--mat-datepicker-calendar-date-in-comparison-range-state-background-color:rgba(249, 171, 0, .2);--mat-datepicker-calendar-date-in-overlap-range-state-background-color:#a8dab5;--mat-datepicker-calendar-date-in-overlap-range-selected-state-background-color:#46a35e;--mat-datepicker-toggle-icon-color:white;--mat-datepicker-calendar-body-label-text-color:rgba(255, 255, 255, .7);--mat-datepicker-calendar-period-button-icon-color:white;--mat-datepicker-calendar-navigation-button-icon-color:white;--mat-datepicker-calendar-header-divider-color:rgba(255, 255, 255, .3);--mat-datepicker-calendar-header-text-color:rgba(255, 255, 255, .7);--mat-datepicker-calendar-date-today-outline-color:rgba(255, 255, 255, .5);--mat-datepicker-calendar-date-today-disabled-state-outline-color:rgba(255, 255, 255, .3);--mat-datepicker-calendar-date-text-color:white;--mat-datepicker-calendar-date-outline-color:transparent;--mat-datepicker-calendar-date-disabled-state-text-color:rgba(255, 255, 255, .5);--mat-datepicker-calendar-date-preview-state-outline-color:rgba(255, 255, 255, .6);--mat-datepicker-range-input-separator-color:white;--mat-datepicker-range-input-disabled-state-separator-color:rgba(255, 255, 255, .5);--mat-datepicker-range-input-disabled-state-text-color:rgba(255, 255, 255, .5);--mat-datepicker-calendar-container-background-color:#393939;--mat-datepicker-calendar-container-text-color:white}html{--mat-divider-color:rgba(255, 255, 255, .3)}html{--mat-expansion-container-background-color:#393939;--mat-expansion-container-text-color:white;--mat-expansion-actions-divider-color:rgba(255, 255, 255, .3);--mat-expansion-header-hover-state-layer-color:rgba(255, 255, 255, .04);--mat-expansion-header-focus-state-layer-color:rgba(255, 255, 255, .04);--mat-expansion-header-disabled-state-text-color:rgba(255, 255, 255, .3);--mat-expansion-header-text-color:white;--mat-expansion-header-description-color:rgba(255, 255, 255, .7);--mat-expansion-header-indicator-color:rgba(255, 255, 255, .7)}html{--mat-expansion-header-collapsed-state-height:48px;--mat-expansion-header-expanded-state-height:64px}html{--mat-icon-color:inherit}html{--mat-sidenav-container-divider-color:rgba(255, 255, 255, .3);--mat-sidenav-container-background-color:#424242;--mat-sidenav-container-text-color:white;--mat-sidenav-content-background-color:#303030;--mat-sidenav-content-text-color:white;--mat-sidenav-scrim-color:rgba(198, 198, 198, .6)}html{--mat-stepper-header-icon-foreground-color:white;--mat-stepper-header-selected-state-icon-background-color:#292929;--mat-stepper-header-selected-state-icon-foreground-color:white;--mat-stepper-header-done-state-icon-background-color:#292929;--mat-stepper-header-done-state-icon-foreground-color:white;--mat-stepper-header-edit-state-icon-background-color:#292929;--mat-stepper-header-edit-state-icon-foreground-color:white;--mat-stepper-container-color:#393939;--mat-stepper-line-color:rgba(255, 255, 255, .3);--mat-stepper-header-hover-state-layer-color:rgba(255, 255, 255, .04);--mat-stepper-header-focus-state-layer-color:rgba(255, 255, 255, .04);--mat-stepper-header-label-text-color:rgba(255, 255, 255, .7);--mat-stepper-header-optional-label-text-color:rgba(255, 255, 255, .7);--mat-stepper-header-selected-state-label-text-color:white;--mat-stepper-header-error-state-label-text-color:#ffb43e;--mat-stepper-header-icon-background-color:rgba(255, 255, 255, .7);--mat-stepper-header-error-state-icon-foreground-color:#ffb43e;--mat-stepper-header-error-state-icon-background-color:transparent}html{--mat-stepper-header-height:72px}html{--mat-toolbar-container-background-color:#212121;--mat-toolbar-container-text-color:white}html{--mat-toolbar-standard-height:64px;--mat-toolbar-mobile-height:56px}:root{--md-divider-color:rgba(255, 255, 255, .3)}@font-face{font-family:NVIDIA;font-style:normal;font-weight:400;src:url(mall/assets/hashed/NVIDIASans_W_Rg.33fb51adcc625f4e.woff2) format("woff2")}@font-face{font-family:NVIDIA;font-style:normal;font-weight:500;src:url(mall/assets/hashed/NVIDIASans_W_Md.14ea224b997bf6e0.woff2) format("woff2")}@font-face{font-family:NVIDIA;font-style:normal;font-weight:700;src:url(mall/assets/hashed/NVIDIASans_W_Bd.5aafff8b08f9a971.woff2) format("woff2")}:root{--hig-marquee-ratio:.3229;--hig-marquee-parent-container-width:100vw;--hig-marquee-container-height:calc(var(--hig-marquee-ratio) * 100vw);--hig-marquee-corner-column:56px;--hig-marquee-text-column:14vw;--hig-marquee-padded-image-first-row:calc(var(--hig-marquee-ratio) * (100vw - var(--hig-marquee-corner-column) - var(--hig-marquee-text-column)));--hig-marquee-padded-image-second-row:calc(var(--hig-marquee-container-height) - var(--hig-marquee-padded-image-first-row))}html,body{background:transparent;height:100%}body{margin:0;overflow:hidden!important;height:100%;max-width:100%;-webkit-touch-callout:none}body :focus{outline:none}.gray-overlay,.black-gradient,.white-gradient,.ext-background-fill{position:absolute;top:0;left:0;width:100%;height:100%}.center-content{display:flex;justify-content:center;align-items:center}.gfn-background-plain{background-color:#000}.gfn-background-plain .splash-gfn-logo{z-index:1;display:none}@media screen and (max-width: 599px){.splash-gfn-logo{width:84px;height:64px;margin-bottom:16px}}@media screen and (min-width: 600px){.splash-gfn-logo{width:174px;height:131px;margin-bottom:24px}}@media screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait){.splash-gfn-logo{margin-bottom:24px}}@media screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3),screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2),screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){.splash-gfn-logo{margin-bottom:20px}}@media screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3),screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3),screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2){.splash-gfn-logo{margin-bottom:48px}}@media screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3){.splash-gfn-logo{margin-bottom:50px}}@media screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3){.splash-gfn-logo{margin-bottom:44px}}.white-gradient{background-image:radial-gradient(circle closest-corner at top,rgba(255,255,255,.2),rgba(255,255,255,.05) 50%,rgba(255,255,255,0))}.black-gradient{background-image:linear-gradient(to right,rgba(0,0,0,.8) 0%,rgba(0,0,0,.4) 25%,rgba(0,0,0,.2) 35%,rgba(0,0,0,.2) 65%,rgba(0,0,0,.4) 75%,rgba(0,0,0,.8) 100%)}.gray-overlay{background-color:#0000002e}html,body{margin:0}img{-webkit-user-drag:none}body,html{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-text-size-adjust:none;text-size-adjust:none;touch-action:none;font-family:NVIDIA,sans-serif;color:#ffffffb3;font-weight:400;font-style:normal;text-transform:none;font-size:14px;line-height:20px;letter-spacing:0}:root{--rwd-column-count:4;--rwd-gutter-count:3;--rwd-gutter-size:8px;--rwd-container-side-spacing:16px;--rwd-column-size:calc((100vw - var(--rwd-sidebar-width) - 32px - 24px) / 4);--rwd-sidebar-width:0px}@media screen and (min-width: 480px){:root{--rwd-column-count:6;--rwd-gutter-count:5;--rwd-column-size:calc((100vw - var(--rwd-sidebar-width) - 32px - 40px) / 6)}}@media screen and (min-width: 720px){:root{--rwd-column-count:8;--rwd-gutter-count:7;--rwd-column-size:calc((100vw - var(--rwd-sidebar-width) - 32px - 56px) / 8)}}@media screen and (min-width: 960px){:root{--rwd-column-count:12;--rwd-gutter-count:11;--rwd-container-side-spacing:24px;--rwd-column-size:calc((100vw - var(--rwd-sidebar-width) - 48px - 88px) / 12)}}@media screen and (min-width: 1440px){:root{--rwd-gutter-size:16px;--rwd-column-size:calc((100vw - var(--rwd-sidebar-width) - 48px - 176px) / 12)}}</style><link rel="stylesheet" href="mall/styles.4710b89e3b30a40c.css" crossorigin="use-credentials" integrity="sha384-dOyj1hCccEm4oiT/K4vDCpEn7sjL/Jz87a04fQXq4z3sxUoG+BsrKQ/DCmeeQ3UC" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="mall/styles.4710b89e3b30a40c.css"></noscript></head>
+
+    <body>
+        <gfn-app-config data-value style="display: none;"></gfn-app-config>
+        <gfn-root>
+            
+            <div class="gfn-background-plain ext-background-fill center-content">
+                <img class="splash-gfn-logo" id="splash-gfn-logo" src="mall/assets/img/splash-gfn-logo-v3.svg">
+                <div class="white-gradient">
+                    <div class="black-gradient">
+                        <div class="gray-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </gfn-root>
+        <script src="mall/handle-gdn-util.js"></script>
+    <script src="mall/runtime.d29dca2316004000.js" type="module" crossorigin="use-credentials" integrity="sha384-ntEDQ2sF/tVqA12F0FdcMNtIRzLDn+pS9BHey7Cq93i5S6oYr6t0QKcEK/aJVn7W"></script><script src="mall/polyfills.b2f88c01b661d0f3.js" type="module" crossorigin="use-credentials" integrity="sha384-xb41NgMRReou0dDgKJiDG40thintUpfwr5dSV1uFNiB26vuABmGmu9s/9GUFh6Bw"></script><script src="mall/vendor.2084f574b9af29d6.js" type="module" crossorigin="use-credentials" integrity="sha384-5gFY78YtEA0rb8+t5lvESmG5pxk+PsFzlZF85f79VWWpX+kMQeVPTD+n2zxvMo9y"></script><script src="mall/main.acb2b5d83679343f.js" type="module" crossorigin="use-credentials" integrity="sha384-ZR0wi0wOO71l04ehA86Up7rhLIKCwhNjcYOqY+trO4EdjvdPRTSPbE0jhH4avPZW"></script></body>
+</html>
