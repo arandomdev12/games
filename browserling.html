@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://api.browserling.com/v1/browserling.js"></script>
+
+    <script>
+    var browserling = new Browserling(token);
+    browserling.setBrowser('ie');
+    browserling.setVersion('9');
+    browserling.setUrl('http://www.catonmat.net');
+    
+    var div = document.querySelector('#browserling');
+    div.appendChild(browserling.iframe());
+    </script>
+    <style>
+      body, html {
+        padding: 0px;
+        margin: 0px;
+      }
+      iframe {
+          padding: 0px;
+          margin: 0px;
+          width: 100%;
+      }
+    </style>
+  </head>
+  
